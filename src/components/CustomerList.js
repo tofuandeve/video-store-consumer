@@ -1,5 +1,6 @@
 import React from 'react';
 import Customer from './Customer.js';
+import customerData from './customer-data.json';
 
 class CustomerList extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class CustomerList extends React.Component {
   }
 
   render() {
-    const customers = this.props.customers.map((customer, i) => {
+    const customers = customerData.map((customer, i) => {
       return (
         <section key={i}>
           <Customer customerInfo={customer}></Customer>

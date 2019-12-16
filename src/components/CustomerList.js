@@ -1,4 +1,5 @@
 import React from 'react';
+import Customer from './Customer.js';
 
 class CustomerList extends React.Component {
     constructor(props) {
@@ -9,7 +10,14 @@ class CustomerList extends React.Component {
     }
 
     render() {
-        return <section><h1>Hello there!</h1></section>;
+        const customers = this.props.customers.map((customer, i) => {
+            return (
+                <section key={i}>
+                    <Customer customerInfo={customer}></Customer>
+                </section>
+            );
+        })
+        return <section>{customers}</section>;
     }
 }
 

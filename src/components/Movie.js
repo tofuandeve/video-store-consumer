@@ -36,7 +36,7 @@ Movie.propTypes = {
   releaseDate: PropTypes.string.isRequired,
   overview: PropTypes.string,
   imageUrl: PropTypes.string,
-  externalId: PropTypes.string,
+  externalId: PropTypes.number,
   selectMovieCallback: PropTypes.func
 }
 

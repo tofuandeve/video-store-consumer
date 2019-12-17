@@ -7,8 +7,7 @@ class MovieLibrary extends Component {
     super(props);
 
     this.state = {
-      movieList: [],
-      selectedMovie: undefined
+      movieList: []
     };
   }
 
@@ -31,11 +30,11 @@ class MovieLibrary extends Component {
       return movie.id === movieId;
     });
 
-    this.setState({ selectedMovie, });
+    this.props.selectMovieCallback(selectedMovie);
   }
 
   render () {
-    const { selectedMovie } = this.state;
+    const { selectedMovie } = this.props;
 
     const movies = this.state.movieList.map((movie, i) => {
       return <Movie 

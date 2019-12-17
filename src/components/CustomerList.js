@@ -7,7 +7,6 @@ class CustomerList extends React.Component {
     super(props);
     this.state = {
       customers: [],
-      selectedCustomer: '',
     }
   }
 
@@ -15,9 +14,8 @@ class CustomerList extends React.Component {
     const customer = this.state.customers.find((customer) => {
       return customer.id === customerId
     });
-    this.setState({
-      selectedCustomer: customer,
-    });
+
+    this.props.selectCustomerCallBack(customer);
   }
 
   componentDidMount() {
@@ -27,7 +25,6 @@ class CustomerList extends React.Component {
         const customerData = response.data;
         this.setState({
           customers: customerData,
-          selectedCustomer: '',
           error: '',
         });
       })
@@ -49,7 +46,12 @@ class CustomerList extends React.Component {
         </section>
       );
     })
-    return <section>{customers}</section>;
+    const selectedCustomer = (this.props.selectedCustomer !== undefined) ? `Selected customer: ${this.props.selectedCustomer.name}` : null;
+    return (
+      <section>
+        <h3>{selectedCustomer}</h3>
+        {customers}
+      </section>);
   }
 }
 

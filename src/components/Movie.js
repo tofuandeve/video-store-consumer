@@ -1,29 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Movie.css'
 
 const Movie = (props) => {
   const { id, title, overview, releaseDate, imageUrl, externalId, selectMovieCallback } = props;
 
   return (
-    <div className="card movie-card">
+    <div className="card">
 
-      <section className="movie-card--header">
+      <section className="">
         {id} - {title} - {releaseDate}
         <button
-          className="btn btn-primary movie-card--select-movie-btn"
+          className="btn btn-primary"
           onClick={() => { selectMovieCallback(id) }}
         >
           Select
         </button>
       </section>
 
-      <section className="movie-card--body">
-        {imageUrl}
-        <p>{overview}</p>
+      <section className="">
+        <img src={imageUrl} alt={title} class="img-rounded"></img>
+        <p>Overview: {overview}</p>
       </section>
 
-      <section className="movie-card--footer">
-        {externalId}
+      <section className="">
+        External ID: {externalId}
       </section>
 
     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Customer from './Customer.js';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class CustomerList extends React.Component {
   constructor(props) {
@@ -38,19 +39,22 @@ class CustomerList extends React.Component {
   render() {
     const customers = this.state.customers.map((customer, i) => {
       return (
-        <section key={i}>
-          <Customer
-            customerInfo={customer}
-            selectCustomerCallBack={this.selectCustomer}
-          ></Customer>
-        </section>
+        <Customer
+          key={i}
+          customerInfo={customer}
+          selectCustomerCallBack={this.selectCustomer}
+        ></Customer>
       );
     })
     const selectedCustomer = (this.props.selectedCustomer !== undefined) ? `Selected customer: ${this.props.selectedCustomer.name}` : null;
+    
     return (
       <section>
+        <h3>{this.state.error}</h3>
         <h3>{selectedCustomer}</h3>
-        {customers}
+        <section>
+          {customers}
+        </section>
       </section>);
   }
 }

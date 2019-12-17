@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import CustomerList from './components/CustomerList';
@@ -28,15 +34,35 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to our video store!</h1>
         </header>
+        
         <p className="App-intro"></p>
-        <CustomerList
-          selectCustomerCallBack={this.selectCustomer}
-          selectedCustomer={this.state.selectedCustomer}
-        />
-        <MovieLibrary
-          selectMovieCallback={this.selectMovie}
-          selectedMovie={this.state.selectedMovie}
-        />
+
+        <Router>
+          <div>
+            <nav>
+              <ul>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/customers">Customer List</Link></li>
+                <li><Link to="/movies">Rental Library</Link></li>
+              </ul>
+            </nav>
+            <Switch>
+              <Route path="/customers">
+                <CustomerList
+                  selectCustomerCallBack={this.selectCustomer}
+                  selectedCustomer={this.state.selectedCustomer}
+                />
+              </Route>
+              <Route path="/movies">
+                <MovieLibrary
+                  selectMovieCallback={this.selectMovie}
+                  selectedMovie={this.state.selectedMovie}
+                />
+              </Route>
+              <Route path="/"></Route>
+            </Switch>
+          </div>
+        </Router>
       </div>
     );
   }

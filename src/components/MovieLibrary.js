@@ -14,19 +14,18 @@ class MovieLibrary extends Component {
   componentDidMount() {
     axios.get('http://localhost:3000/movies').then((response) => {
       this.setState({
-        movieList: response.data
+        movieList: response.data,
+        error: ''
       })
-    }).catch(() => {
+    }).catch((error) => {
       this.setState({
-        error: 'Sorry! Sth went wrong.'
+        error: error.message
       })
     })
   }
 
   selectMovie = (movieId) => {
-    const { movieList } = this.state;
-
-    const selectedMovie = movieList.find((movie) => {
+    const selectedMovie = this.state.movieList.find((movie) => {
       return movie.id === movieId;
     });
 
@@ -46,14 +45,13 @@ class MovieLibrary extends Component {
         imageUrl={movie.image_url}
         externalId={movie.external_id}
         selectMovieCallback={this.selectMovie}
-
       />
     })
+
     return (
       <div>
-        <h1>{this.state.error}</h1>
-        <h1>{selectedMovie ? selectedMovie.title : ''}</h1>
-
+        <h3>{this.state.error}</h3>
+        <h3>{ selectedMovie ? `Selected movie: ${selectedMovie.title}` : null }</h3>
         <section className="movie-list-wrapper">
           {movies}
         </section>

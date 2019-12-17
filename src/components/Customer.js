@@ -8,6 +8,7 @@ class Customer extends React.Component {
 
   render() {
     const { name, register_at, phone, address, city, state, postal_code, movies_checked_out_count, account_credit} = this.props.customerInfo;
+    
     return (
       <section>
         <p>Customer: {name}</p>

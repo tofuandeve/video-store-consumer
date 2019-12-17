@@ -5,25 +5,25 @@ const Movie = (props) => {
   const { id, title, overview, releaseDate, imageUrl, externalId, selectMovieCallback } = props;
 
   return (
-    <div className="card movie-card">
+    <div className="card">
 
-      <section className="movie-card--header">
+      <section className="">
         {id} - {title} - {releaseDate}
         <button
-          className="btn btn-primary movie-card--select-movie-btn"
+          className="btn btn-primary"
           onClick={() => { selectMovieCallback(id) }}
         >
           Select
         </button>
       </section>
 
-      <section className="movie-card--body">
+      <section className="">
         {imageUrl}
-        <p>{overview}</p>
+        <p>Overview: {overview}</p>
       </section>
 
-      <section className="movie-card--footer">
-        {externalId}
+      <section className="">
+        External ID: {externalId}
       </section>
 
     </div>

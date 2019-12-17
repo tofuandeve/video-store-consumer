@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomerList from './components/CustomerList';
 import MovieLibrary from './components/MovieLibrary';
 

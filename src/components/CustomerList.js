@@ -1,6 +1,7 @@
 import React from 'react';
 import Customer from './Customer.js';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class CustomerList extends React.Component {
   constructor(props) {

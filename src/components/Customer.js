@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Customer.css';
 
 class Customer extends React.Component {
   selectCustomer = () => {
@@ -11,7 +12,7 @@ class Customer extends React.Component {
     const { name, register_at, phone, address, city, state, postal_code, movies_checked_out_count, account_credit} = this.props.customerInfo;
     
     return (
-      <section>
+      <section className='card customer-card'>
         <p>Customer: {name}</p>
         <p>Member since: {register_at}</p>
         <p>Phone number: {phone}</p>

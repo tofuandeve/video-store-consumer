@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Movie from './Movie';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './MovieLibrary.css';
 
 class MovieLibrary extends Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class MovieLibrary extends Component {
       <div>
         <h3>{this.state.error}</h3>
         <h3>{ selectedMovie ? `Selected movie: ${selectedMovie.title}` : null }</h3>
-        <section className="movie-list-wrapper">
+        <section className="movie-list">
           {movies}
         </section>
       </div>

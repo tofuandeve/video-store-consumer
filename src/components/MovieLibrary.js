@@ -46,6 +46,7 @@ class MovieLibrary extends Component {
         releaseDate={movie.release_date}
         imageUrl={movie.image_url}
         externalId={movie.external_id}
+        buttonName="Select"
         selectMovieCallback={this.selectMovie}
       />
     })

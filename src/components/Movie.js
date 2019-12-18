@@ -33,7 +33,7 @@ const Movie = (props) => {
 };
 
 Movie.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
   title: PropTypes.string.isRequired,
   releaseDate: PropTypes.string.isRequired,
   overview: PropTypes.string,

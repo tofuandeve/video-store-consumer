@@ -13,7 +13,7 @@ const Movie = (props) => {
         {id} - {title} - {releaseDate}
         <button
           className="btn btn-primary"
-          onClick={() => { selectMovieCallback(id) }}
+          onClick={() => { selectMovieCallback(externalId) }}
         >
           Select
         </button>

@@ -25,9 +25,9 @@ class MovieLibrary extends Component {
     })
   }
 
-  selectMovie = (movieId) => {
+  selectMovie = (externalId) => {
     const selectedMovie = this.state.movieList.find((movie) => {
-      return movie.id === movieId;
+      return movie.external_id === externalId;
     });
 
     this.props.selectMovieCallback(selectedMovie);

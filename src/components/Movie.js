@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Movie.css'
+import './Movie.css';
 
 const Movie = (props) => {
   const { id, title, overview, releaseDate, imageUrl, externalId, selectMovieCallback } = props;
 
   return (
-    <div className="card">
+    <div className="card movie-card">
 
       <section className="">
         {id} - {title} - {releaseDate}

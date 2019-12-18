@@ -10,13 +10,14 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CustomerList from './components/CustomerList';
 import MovieLibrary from './components/MovieLibrary';
+import MovieSearch from './components/MovieSearch';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedCustomer: undefined,
-      selectedMovie: undefined,
+      selectedMovie: undefined, 
     }
   }
 
@@ -27,7 +28,7 @@ class App extends Component {
   selectMovie = (selectedMovie) => {
     this.setState({ selectedMovie })
   }
-  
+
   render() {
     return (
       <div className="App">
@@ -45,6 +46,7 @@ class App extends Component {
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/customers">Customer List</Link></li>
                 <li><Link to="/movies">Rental Library</Link></li>
+                <li><Link to="/search">Search Movie</Link></li>
               </ul>
             </nav>
             <Switch>
@@ -59,6 +61,9 @@ class App extends Component {
                   selectMovieCallback={this.selectMovie}
                   selectedMovie={this.state.selectedMovie}
                 />
+              </Route>
+              <Route path="/search">
+                <MovieSearch/>
               </Route>
               <Route path="/"></Route>
             </Switch>

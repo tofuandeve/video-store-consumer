@@ -88,7 +88,7 @@ class MovieSearch extends Component {
             value={this.searchTerm}
             className="search-bar"
           />
-          <input type="submit" value="Submit Line" className="new-card-form__form-button" />
+          <input type="submit" value="Search" className="new-card-form__form-button" />
         </form>
         <section className="movie-list">{movies}</section>
       </section>

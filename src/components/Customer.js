@@ -9,12 +9,12 @@ class Customer extends React.Component {
   }
 
   render() {
-    const { name, register_at, phone, address, city, state, postal_code, movies_checked_out_count, account_credit} = this.props.customerInfo;
+    const { name, registered_at, phone, address, city, state, postal_code, movies_checked_out_count, account_credit} = this.props.customerInfo;
     
     return (
       <section className='card customer-card'>
-        <p>Customer: {name}</p>
-        <p>Member since: {register_at}</p>
+        <h4>{name}</h4>
+        <p>Member since: {(new Date(registered_at)).toLocaleDateString()}</p>
         <p>Phone number: {phone}</p>
         <section>
           <p>Address: </p>
@@ -33,7 +33,7 @@ class Customer extends React.Component {
 Customer.propTypes = {
   id: PropTypes.number,
   name: PropTypes.string,
-  register_at: PropTypes.string,
+  registered_at: PropTypes.string,
   phone: PropTypes.string,
   city: PropTypes.string,
   address: PropTypes.string,

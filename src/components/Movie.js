@@ -10,22 +10,26 @@ const Movie = (props) => {
     <div className="card movie-card">
 
       <section className="">
-        {id} - {title} - {releaseDate}
-        <button
-          className="btn btn-primary"
-          onClick={() => { selectMovieCallback(externalId) }}
-        >
-          {buttonName}
-        </button>
+        <section className='movie-title'>
+          <h6>{title}</h6>
+        </section>
+        <section className='movie-select-button'>
+          <button
+            className="btn btn-primary"
+            onClick={() => { selectMovieCallback(externalId) }}
+          >
+            {buttonName}
+          </button>
+        </section>
       </section>
 
       <section className="">
         <img src={imageUrl} alt={title} className="img-rounded"></img>
-        <p>Overview: {overview}</p>
+        {/* <p>Overview: {overview}</p> */}
       </section>
 
       <section className="">
-        External ID: {externalId}
+        {/* External ID: {externalId} */}
       </section>
 
     </div>

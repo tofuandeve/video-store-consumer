@@ -1,9 +1,20 @@
 .movie-card {
   margin: 60px 30px 0px 30px;
   display: inline-block;
-  width: 350px
+  width: 200px
+}
+
+.movie-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+}
+
+.movie-select-button {
+  margin-bottom: 10px
 }
 
 img {
-  float: left
+  float: center
 }

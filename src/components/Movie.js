@@ -20,7 +20,7 @@ const Movie = (props) => {
       </section>
 
       <section className="">
-        <img src={imageUrl} alt={title} class="img-rounded"></img>
+        <img src={imageUrl} alt={title} className="img-rounded"></img>
         <p>Overview: {overview}</p>
       </section>
 

@@ -42,9 +42,14 @@ class App extends Component {
       customer_id: this.state.selectedCustomer.id,
       due_date: date,
     };
+
     axios.post(url, params)
       .then((response) => {
-        console.log(response)
+        this.setState({
+          selectedCustomer: undefined,
+          selectedMovie: undefined,
+          error: '',
+        });
       })
       .catch((error) => {
         this.setState({
@@ -54,6 +59,10 @@ class App extends Component {
   }
 
   render() {
+    const { selectedMovie, selectedCustomer } = this.state;
+    const movie = (selectedMovie !== undefined) ? (<div>Selected Movie: {selectedMovie.title}</div>) : null;
+    const customer = (selectedCustomer !== undefined) ? (<div>Selected Customer: {selectedCustomer.name}</div>) : null;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -71,20 +80,24 @@ class App extends Component {
                 <li><Link to="/customers">Customer List</Link></li>
                 <li><Link to="/movies">Rental Library</Link></li>
                 <li><Link to="/search">Search Movie</Link></li>
-                {(this.state.selectedCustomer !== undefined && this.state.selectedMovie !== undefined) ? <li><button onClick={this.checkout}>Checkout</button></li> : null}
+                {(selectedCustomer !== undefined && selectedMovie !== undefined) ? <li><button onClick={this.checkout}>Checkout</button></li> : null}
               </ul>
             </nav>
+
+            {movie}
+            {customer}
+
             <Switch>
               <Route path="/customers">
                 <CustomerList
                   selectCustomerCallBack={this.selectCustomer}
-                  selectedCustomer={this.state.selectedCustomer}
+                  selectedCustomer={selectedCustomer}
                 />
               </Route>
               <Route path="/movies">
                 <MovieLibrary
                   selectMovieCallback={this.selectMovie}
-                  selectedMovie={this.state.selectedMovie}
+                  selectedMovie={selectedMovie}
                 />
               </Route>
               <Route path="/search">
@@ -94,6 +107,7 @@ class App extends Component {
             </Switch>
           </div>
         </Router>
+
       </div>
     );
   }

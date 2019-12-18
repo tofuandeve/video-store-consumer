@@ -46,12 +46,10 @@ class CustomerList extends React.Component {
         ></Customer>
       );
     })
-    const selectedCustomer = (this.props.selectedCustomer !== undefined) ? `Selected customer: ${this.props.selectedCustomer.name}` : null;
     
     return (
       <section>
         <h3>{this.state.error}</h3>
-        <h3>{selectedCustomer}</h3>
         <section>
           {customers}
         </section>

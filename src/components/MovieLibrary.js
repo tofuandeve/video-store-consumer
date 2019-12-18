@@ -35,8 +35,6 @@ class MovieLibrary extends Component {
   }
 
   render () {
-    const { selectedMovie } = this.props;
-
     const movies = this.state.movieList.map((movie, i) => {
       return <Movie 
         key={i}
@@ -54,7 +52,6 @@ class MovieLibrary extends Component {
     return (
       <div>
         <h3>{this.state.error}</h3>
-        <h3>{ selectedMovie ? `Selected movie: ${selectedMovie.title}` : null }</h3>
         <section className="movie-list">
           {movies}
         </section>

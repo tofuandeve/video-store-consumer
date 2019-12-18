@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Movie.css';
 
 const Movie = (props) => {
-  const { id, title, overview, releaseDate, imageUrl, externalId, selectMovieCallback } = props;
+  const { id, title, overview, releaseDate, imageUrl, externalId, selectMovieCallback, buttonName } = props;
 
   return (
     <div className="card movie-card">
@@ -15,7 +15,7 @@ const Movie = (props) => {
           className="btn btn-primary"
           onClick={() => { selectMovieCallback(externalId) }}
         >
-          Select
+          {buttonName}
         </button>
       </section>
 

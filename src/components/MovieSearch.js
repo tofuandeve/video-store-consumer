@@ -72,6 +72,7 @@ class MovieSearch extends Component {
         releaseDate={movie.release_date}
         imageUrl={movie.image_url}
         externalId={movie.external_id}
+        buttonName="Add to library"
         selectMovieCallback={this.selectMovie}
       />
     });

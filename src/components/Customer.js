@@ -31,8 +31,8 @@ class Customer extends React.Component {
 }
 
 Customer.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
+  id: PropTypes.number,
+  name: PropTypes.string,
   register_at: PropTypes.string,
   phone: PropTypes.string,
   city: PropTypes.string,

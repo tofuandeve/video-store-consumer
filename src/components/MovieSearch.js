@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Movie from './Movie';
+import './MovieSearch.css';
 
 class MovieSearch extends Component {
   constructor(props) {
@@ -88,7 +89,7 @@ class MovieSearch extends Component {
           />
           <input type="submit" value="Submit Line" className="new-card-form__form-button" />
         </form>
-        <section>{movies}</section>
+        <section className="movie-list">{movies}</section>
       </section>
     );
   }

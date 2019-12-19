@@ -13,14 +13,6 @@ class CustomerList extends React.Component {
     }
   }
 
-  selectCustomer = (customerId) => {
-    const customer = this.state.customers.find((customer) => {
-      return customer.id === customerId
-    });
-
-    this.props.selectCustomerCallBack(customer);
-  }
-
   componentDidMount() {
     const url = "http://localhost:3000/customers"
     axios.get(url)
@@ -38,10 +30,20 @@ class CustomerList extends React.Component {
       });
   }
 
-  showDetail = (customerId) => {
-    const currentCustomer = this.state.customers.find((customer) => {
-      return (customer.id === customerId);
+  findCustomer = (customerId) => {
+    const customer = this.state.customers.find((customer) => {
+      return customer.id === customerId
     });
+    return customer
+  }
+  
+  selectCustomer = (customerId) => {
+    const customer = this.findCustomer(customerId)
+    this.props.selectCustomerCallBack(customer);
+  }
+
+  showDetail = (customerId) => {
+    const currentCustomer = this.findCustomer(customerId)
     this.setState({ currentCustomer })
   }
 

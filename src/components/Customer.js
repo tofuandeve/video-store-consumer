@@ -12,7 +12,7 @@ class Customer extends React.Component {
     const { name, registered_at, phone, address, city, state, postal_code, movies_checked_out_count, account_credit} = this.props.customerInfo;
     
     return (
-      <section className='card customer-card'>
+      <section className='card customer-card' onClick={() => {this.props.showDetailCallback(this.props.customerInfo.id)}}>
         <h4>{name}</h4>
         <p>Member since: {(new Date(registered_at)).toLocaleDateString()}</p>
         <p>Phone number: {phone}</p>

@@ -4,6 +4,10 @@
   width: 200px
 }
 
+.movie-card-details {
+  width: 500px
+}
+
 .movie-title {
   display: flex;
   align-items: center;
@@ -17,4 +21,8 @@
 
 img {
   float: center
+}
+
+.deselect-img{
+  width: 10px
 }

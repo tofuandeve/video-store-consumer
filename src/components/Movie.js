@@ -9,10 +9,13 @@ const Movie = (props) => {
   return (
     <div className="card movie-card" onClick={() => {props.showDetailCallback(externalId)}}>
 
-      <section className="">
+      <img src={imageUrl} alt={title} className="card-img-top"></img>
+      
+      <section className="card-body">
         <section className='movie-title'>
           <h6>{title}</h6>
         </section>
+
         <section className='movie-select-button'>
           <button
             className="btn btn-primary"
@@ -21,13 +24,7 @@ const Movie = (props) => {
             {buttonName}
           </button>
         </section>
-      </section>
 
-      <section className="">
-        <img src={imageUrl} alt={title} className="img-rounded"></img>
-      </section>
-
-      <section className="">
       </section>
 
     </div>

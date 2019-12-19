@@ -19,10 +19,7 @@
   margin-bottom: 10px
 }
 
-img {
-  float: center
-}
-
-.deselect-img{
-  width: 10px
+.card-img-top {
+  height: 280px;
+  width: auto
 }

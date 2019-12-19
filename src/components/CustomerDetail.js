@@ -11,14 +11,15 @@ class CustomerDetail extends React.Component {
         this.state = {
             checkedOutMovies: [],
             overdueList: [],
+            customerId: undefined
         }
     }
 
-    componentDidMount() {
-        const allMovieUrl = `http://localhost:3000/customers/${this.props.customerInfo.id}`;
-        axios.get(allMovieUrl).then((response) => {
-            console.log(response);
+    getCustomerDetailFromApi = () => {
+        const url = `http://localhost:3000/customers/${this.props.customerInfo.id}`;
+        axios.get(url).then((response) => {
             this.setState({
+                customerId: this.props.customerInfo.id,
                 checkedOutMovies: response.data,
             })
         }).catch((error) => {
@@ -26,6 +27,16 @@ class CustomerDetail extends React.Component {
                 error: error.message,
             });
         });
+    }
+
+    componentDidMount() {
+        this.getCustomerDetailFromApi()
+    }
+
+    componentDidUpdate() {
+        if (this.props.customerInfo.id !== this.state.customerId) {
+            this.getCustomerDetailFromApi()
+        }
     }
 
     // checkin = (externalMovieId) => {
@@ -74,7 +85,8 @@ class CustomerDetail extends React.Component {
                     <p>{city}, {state}</p>
                     <p>{postal_code}</p>
                 </section>
-                <p>Movies checked out: {movies}</p>
+                <p>Movies checked out:</p>
+                <section>{movies}</section>
                 <p>Available credit: {account_credit}</p>
                 <button onClick={this.selectCustomer}>Select customer</button>
             </section>

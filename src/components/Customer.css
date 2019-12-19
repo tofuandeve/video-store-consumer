@@ -1,5 +1,13 @@
 .customer-card {
   margin: 60px 30px 0px 30px;
+  padding: 20px 0px 20px 0px;
   display: inline-block;
   width: 350px
+}
+
+.customer-card-details {
+  margin: none;
+  padding: 0px 30px 60px 30px;
+  display: inline-block;
+  width: 700px
 }

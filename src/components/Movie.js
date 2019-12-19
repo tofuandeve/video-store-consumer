@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Movie.css';
+import MovieDetail from './MovieDetail';
 
 const Movie = (props) => {
-  const { id, title, overview, releaseDate, imageUrl, externalId, selectMovieCallback, buttonName } = props;
+  const {title, overview, releaseDate, imageUrl, externalId, selectMovieCallback, buttonName } = props;
 
   return (
-    <div className="card movie-card" onClick={() => {props.showDetailCallback(externalId)}}>
+    <div className="card movie-card" >
 
       <img src={imageUrl} alt={title} className="card-img-top"></img>
       
@@ -25,6 +26,13 @@ const Movie = (props) => {
           </button>
         </section>
 
+        <MovieDetail
+          title={title}
+          overview={overview}
+          releaseDate={releaseDate}
+          imageUrl={imageUrl}
+          externalId={externalId}
+        />
       </section>
 
     </div>
@@ -32,7 +40,6 @@ const Movie = (props) => {
 };
 
 Movie.propTypes = {
-  id: PropTypes.number,
   title: PropTypes.string.isRequired,
   releaseDate: PropTypes.string.isRequired,
   overview: PropTypes.string,

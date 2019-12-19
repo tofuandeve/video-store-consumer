@@ -4,10 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Movie.css';
 
 const Movie = (props) => {
-  const { id, title, overview, releaseDate, imageUrl, externalId, selectMovieCallback, buttonName } = props;
+  const { title, imageUrl, externalId, selectMovieCallback, buttonName } = props;
 
   return (
-    <div className="card movie-card" onClick={() => {props.showDetailCallback(externalId)}}>
+    <div className="card movie-card" onClick={() => { props.showDetailCallback(externalId) }}>
 
       <img src={imageUrl} alt={title} className="card-img-top"></img>
       

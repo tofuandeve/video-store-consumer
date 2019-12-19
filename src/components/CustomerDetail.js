@@ -69,26 +69,27 @@ class CustomerDetail extends React.Component {
                     imageUrl={movie.image_url}
                     externalId={movie.external_id}
                     buttonName="Checkin"
-                // selectMovieCallback={this.checkin}
+                    // selectMovieCallback={this.checkin}
+                    showDetailCallback={() => { }} // we need this emty function so that browser won't crash when user click on the checked out movie list on customer detail page
                 />
             )
         })
-        // render all the movies
+
         return (
-            <section className='card customer-card'>
+            <section className='card customer-card customer-card-details'>
                 <h4>{name}</h4>
                 <p>Member since: {(new Date(registered_at)).toLocaleDateString()}</p>
                 <p>Phone number: {phone}</p>
                 <section>
-                    <p>Address: </p>
-                    <p>{address}</p>
-                    <p>{city}, {state}</p>
-                    <p>{postal_code}</p>
+                    <p>Address: {address}</p>
+                    <p>{city}, {state} {postal_code}</p>
                 </section>
+
+                <p>Available credit: {account_credit}</p>
+                <button onClick={() => { this.props.selectCustomerCallBack(this.state.customerId) }}>Select customer</button>
+
                 <p>Movies checked out:</p>
                 <section>{movies}</section>
-                <p>Available credit: {account_credit}</p>
-                <button onClick={this.selectCustomer}>Select customer</button>
             </section>
         );
     }

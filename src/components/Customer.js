@@ -17,10 +17,8 @@ class Customer extends React.Component {
         <p>Member since: {(new Date(registered_at)).toLocaleDateString()}</p>
         <p>Phone number: {phone}</p>
         <section>
-          <p>Address: </p>
-          <p>{address}</p>
-          <p>{city}, {state}</p>
-          <p>{postal_code}</p>
+          <p>Address: {address}</p>
+          <p>{city}, {state} {postal_code}</p>
         </section>
         <p>Movies checked out: {movies_checked_out_count}</p>
         <p>Available credit: {account_credit}</p>

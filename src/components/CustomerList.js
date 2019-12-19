@@ -53,6 +53,7 @@ class CustomerList extends React.Component {
     const currentCustomer = (customer !== undefined) ? 
       <CustomerDetail
         customerInfo={customer}
+        selectCustomerCallBack={this.selectCustomer} // enable selecting a customer in CustomerDetail component
       /> : null;
     
     const customers = this.state.customers.map((customer, i) => {

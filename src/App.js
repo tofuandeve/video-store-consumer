@@ -91,13 +91,11 @@ class App extends Component {
               <Route path="/customers">
                 <CustomerList
                   selectCustomerCallBack={this.selectCustomer}
-                  selectedCustomer={selectedCustomer}
                 />
               </Route>
               <Route path="/movies">
                 <MovieLibrary
                   selectMovieCallback={this.selectMovie}
-                  selectedMovie={selectedMovie}
                 />
               </Route>
               <Route path="/search">

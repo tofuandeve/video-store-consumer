@@ -1,3 +1,7 @@
+.search {
+  height: 500px;
+}
+
 .movie-list {
     display: flex;
     flex-flow: row wrap;

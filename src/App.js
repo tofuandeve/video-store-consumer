@@ -93,11 +93,15 @@ class App extends Component {
               <Route path="/search">
                 <MovieSearch />
               </Route>
-              <Route path="/"></Route>
+              <Route path="/">
+                <div className='homepage'>
+                  <img src="https://www.femalefirst.co.uk/image-library/land/1000/t/the-croods-poster---resize.jpg" alt="the croods" className='homepage-img'/>
+                </div>
+              </Route>
             </Switch>
           </div>
         </Router>
-
+        <footer className="footer">Copyright: Eve and Xinran @2019</footer>
       </div>
     );
   }

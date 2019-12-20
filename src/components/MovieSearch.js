@@ -78,7 +78,7 @@ class MovieSearch extends Component {
     });
 
     return (
-      <section>
+      <section className='search'>
         <div>
           <label htmlFor="MovieSearch">Search</label>
         </div>

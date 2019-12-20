@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: rgb(223, 232, 235);
 }
 
 .App-logo {
@@ -26,6 +27,18 @@
   to { transform: rotate(360deg); }
 }
 
+nav {
+  background-color: rgb(97, 131, 131);
+}
+
+nav a {
+  color: white
+}
+
+nav a:hover {
+  color: rgb(194, 211, 214)
+}
+
 nav ul {
   padding-left: 0;
 }
@@ -33,5 +46,21 @@ nav ul {
 nav li {
   list-style: none;
   display: inline-block;
-  margin: 20px
+  margin: 20px 50px
+}
+
+.homepage {
+  padding: 30px 30px 50px 30px
+}
+
+.homepage-img {
+  width: 52%;
+  border-radius: 5%;
+  opacity: 0.9;
+}
+
+.footer {
+  color: white;
+  padding: 15px;
+  background-color: rgb(97, 131, 131);
 }

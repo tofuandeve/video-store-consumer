@@ -3,3 +3,7 @@
   flex-flow: row wrap;
   justify-content: center;
 }
+
+div {
+  padding-bottom: 20px
+}

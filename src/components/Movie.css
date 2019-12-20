@@ -1,12 +1,9 @@
 .movie-card {
   margin: 60px 30px 0px 30px;
-  padding: 10px 0px 10px 0px;
+  padding: 2px 0px 10px 0px;
   display: inline-block;
-  width: 220px
-}
-
-.movie-card-details {
-  width: 500px
+  width: 220px;
+  border: 2px rgb(176, 206, 222) outset;
 }
 
 .movie-title {
@@ -14,6 +11,7 @@
   align-items: center;
   justify-content: center;
   height: 50px;
+  text-align: center;
 }
 
 .movie-select-button {
@@ -21,6 +19,6 @@
 }
 
 .card-img-top {
-  height: 280px;
+  height: 320px;
   width: auto
 }

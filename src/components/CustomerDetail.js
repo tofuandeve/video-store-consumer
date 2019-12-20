@@ -23,13 +23,13 @@ class CustomerDetail extends React.Component {
             show: false
         })
     }
-    
+
     handleShow = () => {
         this.setState({
             show: true
         })
     }
-    
+
     getCustomerDetailFromApi = () => {
         const rentalsUrl = `http://localhost:3000/customers/${this.props.customerInfo.id}`;
         axios.get(rentalsUrl).then((response) => {
@@ -45,7 +45,7 @@ class CustomerDetail extends React.Component {
         });
     }
 
-    componentDidMount() {}
+    componentDidMount() { }
 
     componentDidUpdate() {
         if (this.state.rentals.length !== this.state.totalRental || this.props.customerInfo.id !== this.state.customerId) {
@@ -60,7 +60,7 @@ class CustomerDetail extends React.Component {
         console.log(rental)
 
         const url = `http://localhost:3000/rentals/${rental.movie.title}/return`
-        const params = {customer_id: this.props.customerInfo.id}
+        const params = { customer_id: this.props.customerInfo.id }
         axios.post(url, params).then((reponse) => {
             this.setState({
                 error: '',
@@ -98,18 +98,20 @@ class CustomerDetail extends React.Component {
                 <Button variant="outline-info" onClick={this.handleShow}>
                     Details
                 </Button>
-            
+
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>{name}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <p>Member since: {(new Date(registered_at)).toLocaleDateString()}</p>
-                        <p>Address: {address}</p>
-                        <p>{city}, {state} {postal_code}</p>
-                        <p>Phone: {phone}</p>
-                        <p>Available Credit: {account_credit}</p>
-                        {movies}
+                        <div className="customer-card-details">
+                            <p>Member since: {(new Date(registered_at)).toLocaleDateString()}</p>
+                            <p>Address: {address}</p>
+                            <p>{city}, {state} {postal_code}</p>
+                            <p>Phone: {phone}</p>
+                            <p>Available Credit: {account_credit}</p>
+                            {movies}
+                        </div>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleClose}>

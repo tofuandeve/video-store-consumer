@@ -10,11 +10,8 @@
   text-align: left;
 }
 
-.customer-card-details {
-  margin: none;
-  padding: 0px 30px 60px 30px;
-  display: inline-block;
-  width: 700px
+.modal-content {
+  width: 600px
 }
 
 .customer-select-button {

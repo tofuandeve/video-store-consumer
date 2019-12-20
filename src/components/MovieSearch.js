@@ -83,13 +83,8 @@ class MovieSearch extends Component {
 
     return (
       <section className='search'>
-        <div>
-          <label htmlFor="MovieSearch">Search</label>
-        </div>
-
-        <h3 className="message"> {this.state.message} </h3>
-
-        <form onSubmit={this.searchMovie}>
+        <h3 className="movie-search">Let's Explore More Movies!</h3>
+        <form className='movie-search-form' onSubmit={this.searchMovie}>
           <input
             onChange={(event) => { this.setState({ searchTerm: event.target.value }) }}
             value={this.searchTerm}
@@ -97,6 +92,7 @@ class MovieSearch extends Component {
           />
           <input type="submit" value="Search" className="new-card-form__form-button" />
         </form>
+        <h3 className="message"> {this.state.message} </h3>
         <section className="movie-list">{movies}</section>
       </section>
     );

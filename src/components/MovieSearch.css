@@ -2,6 +2,15 @@
   min-height: 100vh;
 }
 
+h3 {
+  margin: 20px
+}
+
+.movie-search {
+  color: rgb(58, 104, 113);
+  margin: 30px;
+}
+
 .movie-list {
     display: flex;
     flex-flow: row wrap;

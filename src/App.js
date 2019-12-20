@@ -99,11 +99,9 @@ class App extends Component {
               <div id="rental">
                 <h5>Current Rental</h5>
                 <div className='card-body'>
-                  
-                <h3 className="message"> {this.state.message} </h3>
-                  
                   <p>Movie: {movie}</p>
                   <p>Customer: {customer}</p>
+                  {this.state.message !== '' ? <h3 className="message"> {this.state.message} </h3> : null}
                 </div>
                 {(selectedCustomer !== undefined && selectedMovie !== undefined) ? <button className='btn btn-info' onClick={this.checkout}>Checkout</button> : null}
               </div>

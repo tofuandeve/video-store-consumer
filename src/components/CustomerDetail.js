@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Customer.css';
 import axios from 'axios';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 import Movie from './Movie';
 
 class CustomerDetail extends React.Component {
@@ -11,10 +13,23 @@ class CustomerDetail extends React.Component {
         this.state = {
             checkedOutMovies: [],
             overdueList: [],
-            customerId: undefined
+            customerId: undefined,
+            show: false
         }
     }
 
+    handleClose = () => {
+        this.setState({
+            show: false
+        })
+    }
+    
+    handleShow = () => {
+        this.setState({
+            show: true
+        })
+    }
+    
     getCustomerDetailFromApi = () => {
         const url = `http://localhost:3000/customers/${this.props.customerInfo.id}`;
         axios.get(url).then((response) => {
@@ -29,9 +44,7 @@ class CustomerDetail extends React.Component {
         });
     }
 
-    componentDidMount() {
-        this.getCustomerDetailFromApi()
-    }
+    componentDidMount() {}
 
     componentDidUpdate() {
         if (this.props.customerInfo.id !== this.state.customerId) {
@@ -57,12 +70,14 @@ class CustomerDetail extends React.Component {
     // }
 
     render() {
+        
+
         const { name, registered_at, phone, address, city, state, postal_code, account_credit } = this.props.customerInfo;
+
         const movies = this.state.checkedOutMovies.map((movie, i) => {
             return (
                 <Movie
                     key={i}
-                    id={movie.id}
                     title={movie.title}
                     overview={movie.overview}
                     releaseDate={movie.release_date}
@@ -70,40 +85,42 @@ class CustomerDetail extends React.Component {
                     externalId={movie.external_id}
                     buttonName="Checkin"
                     // selectMovieCallback={this.checkin}
-                    showDetailCallback={() => { }} // we need this emty function so that browser won't crash when user click on the checked out movie list on customer detail page
+                    // showDetailCallback={() => { }} // we need this emty function so that browser won't crash when user click on the checked out movie list on customer detail page
                 />
             )
         })
 
         return (
-            <section className='card customer-card customer-card-details'>
-                <h4>{name}</h4>
-                <p>Member since: {(new Date(registered_at)).toLocaleDateString()}</p>
-                <p>Phone number: {phone}</p>
-                <section>
-                    <p>Address: {address}</p>
-                    <p>{city}, {state} {postal_code}</p>
-                </section>
-
-                <p>Available credit: {account_credit}</p>
-                <button onClick={() => { this.props.selectCustomerCallBack(this.state.customerId) }}>Select customer</button>
-
-                <p>Movies checked out:</p>
-                <section>{movies}</section>
-            </section>
+            <>
+                <Button variant="primary" onClick={this.handleShow}>
+                    Details
+                </Button>
+            
+                <Modal show={this.state.show} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>{name}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <p>Registered At: {registered_at}</p>
+                        <p>Address: {address}</p>
+                        <p>{city}, {state} {postal_code}</p>
+                        <p>Phone: {phone}</p>
+                        <p>Account Credit: {account_credit}</p>
+                        {movies}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.handleClose}>
+                            Close
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
         );
     }
-
 };
 
 CustomerDetail.propTypes = {
-    id: PropTypes.number,
-    title: PropTypes.string.isRequired,
-    releaseDate: PropTypes.string.isRequired,
-    overview: PropTypes.string,
-    imageUrl: PropTypes.string,
-    externalId: PropTypes.number,
-    selectMovieCallback: PropTypes.func
+    customerInfo: PropTypes.object.isRequired
 }
 
 export default CustomerDetail;

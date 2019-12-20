@@ -2,32 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Movie.css';
+import MovieDetail from './MovieDetail';
 
 const Movie = (props) => {
-  const { id, title, overview, releaseDate, imageUrl, externalId, selectMovieCallback, buttonName } = props;
-
+  const {title, overview, releaseDate, imageUrl, externalId, selectMovieCallback, buttonName } = props;
+  const styling = (props.isHighlighted) ? "card movie-card overdue" : "card movie-card";
+  
   return (
-    <div className="card movie-card" onClick={() => {props.showDetailCallback(externalId)}}>
+    <div className={styling} >
 
-      <section className="">
+      <img src={imageUrl} alt={title} className="card-img-top"></img>
+      
+      <section className="card-body">
         <section className='movie-title'>
-          <h6>{title}</h6>
+          <h5>{title}</h5>
         </section>
-        <section className='movie-select-button'>
-          <button
-            className="btn btn-primary"
+
+        <button
+            className="btn btn-outline-info movie-select-button"
             onClick={() => { selectMovieCallback(externalId) }}
           >
-            {buttonName}
-          </button>
-        </section>
-      </section>
+          {buttonName}
+        </button>
 
-      <section className="">
-        <img src={imageUrl} alt={title} className="img-rounded"></img>
-      </section>
-
-      <section className="">
+        <MovieDetail
+          title={title}
+          overview={overview}
+          releaseDate={releaseDate}
+          imageUrl={imageUrl}
+          externalId={externalId}
+        />
       </section>
 
     </div>
@@ -35,7 +39,6 @@ const Movie = (props) => {
 };
 
 Movie.propTypes = {
-  id: PropTypes.number,
   title: PropTypes.string.isRequired,
   releaseDate: PropTypes.string.isRequired,
   overview: PropTypes.string,

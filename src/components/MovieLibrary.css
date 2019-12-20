@@ -3,3 +3,16 @@
   flex-flow: row wrap;
   justify-content: center;
 }
+
+div {
+  padding-bottom: 20px
+}
+
+.movie-page {
+  margin-top: 50px
+}
+
+.movie-page-button {
+  margin: 0px 8px;
+  padding: 5px;
+}

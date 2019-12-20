@@ -1,22 +1,15 @@
 import React from 'react';
 import Customer from './Customer.js';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class CustomerList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      customers: [],
+      customers: []
     }
-  }
-
-  selectCustomer = (customerId) => {
-    const customer = this.state.customers.find((customer) => {
-      return customer.id === customerId
-    });
-
-    this.props.selectCustomerCallBack(customer);
   }
 
   componentDidMount() {
@@ -36,14 +29,26 @@ class CustomerList extends React.Component {
       });
   }
 
+  findCustomer = (customerId) => {
+    const customer = this.state.customers.find((customer) => {
+      return customer.id === customerId
+    });
+    return customer
+  }
+  
+  selectCustomer = (customerId) => {
+    const customer = this.findCustomer(customerId)
+    this.props.selectCustomerCallback(customer);
+  }
+
   render() {
     const customers = this.state.customers.map((customer, i) => {
       return (
         <Customer
           key={i}
           customerInfo={customer}
-          selectCustomerCallBack={this.selectCustomer}
-        ></Customer>
+          selectCustomerCallback={this.selectCustomer}
+        />
       );
     })
     
@@ -55,6 +60,10 @@ class CustomerList extends React.Component {
         </section>
       </section>);
   }
+}
+
+CustomerList.propTypes = {
+  selectCustomerCallback: PropTypes.func
 }
 
 export default CustomerList;

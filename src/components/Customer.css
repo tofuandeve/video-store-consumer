@@ -1,5 +1,36 @@
 .customer-card {
   margin: 60px 30px 0px 30px;
+  padding: 10px 0px 0px 0px;
   display: inline-block;
-  width: 350px
+  width: 300px;
+  text-align: right;
+}
+
+.customer-card .card-header, .customer-card .card-body{
+  text-align: left;
+}
+
+.customer-card-details {
+  margin: none;
+  padding: 0px 30px 60px 30px;
+  display: inline-block;
+  width: 700px
+}
+
+.customer-select-button {
+  margin-right: 5px;
+}
+
+.buttons {
+  margin-right: 5px;
+}
+
+.customer-card .btn {
+  padding: 5px;
+  border-style: none;
+  color: rgb(47, 115, 123)
+}
+
+.customer-card .btn:hover {
+  color: white
 }

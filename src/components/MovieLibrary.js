@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Movie from './Movie';
-import MovieDetail from './MovieDetail';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './MovieLibrary.css';
 
@@ -11,12 +11,19 @@ class MovieLibrary extends Component {
 
     this.state = {
       movieList: [],
-      currentMovie: undefined,
+      page: 1,
+      currentPage: 1,
+      nextPageBtn: true,
+      previousPageBtn: true
     };
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/movies').then((response) => {
+    const params = {
+      p: this.state.page,
+      n: 8
+    }
+    axios.get(`http://localhost:3000/movies?p=${params['p']}&n=${params['n']}`).then((response) => {
       this.setState({
         movieList: response.data,
         error: ''
@@ -26,6 +33,26 @@ class MovieLibrary extends Component {
         error: error.message
       })
     })
+  }
+
+  componentDidUpdate() {
+    if(this.state.currentPage !== this.state.page){
+      const params = {
+        p: this.state.page,
+        n: 8
+      }
+      axios.get(`http://localhost:3000/movies?p=${params['p']}&n=${params['n']}`).then((response) => {
+        this.setState({
+          movieList: response.data,
+          error: '',
+          currentPage: this.state.page
+        })
+      }).catch((error) => {
+        this.setState({
+          error: error.message
+        })
+      })
+    }
   }
 
   findMovieByExternalId = (externalId) => {
@@ -41,35 +68,34 @@ class MovieLibrary extends Component {
     this.props.selectMovieCallback(selectedMovie);
   }
 
-  showDetail = (externalId) => {
-    const currentMovie = this.findMovieByExternalId(externalId)
-    this.setState({ currentMovie });
+  goPreviousPage = () => {
+    if(this.state.page > 0){
+      this.setState({
+        page: this.state.page - 1
+      })
+    } else {
+      this.setState({
+        previousPageBtn: false
+      })
+    }
   }
 
-  deselectMovie = () => {
-    this.setState({
-      currentMovie: undefined,
-    });
+  goNextPage = () => {
+    if(this.state.movieList.length === 8){
+      this.setState({
+        page: this.state.page + 1
+      })
+    } else {
+      this.setState({
+        nextPageBtn: false
+      })
+    }
   }
 
   render() {
-    const movie = this.state.currentMovie
-    const currentMovie = (this.state.currentMovie !== undefined) ?
-      (<MovieDetail
-        id={movie.id}
-        title={movie.title}
-        overview={movie.overview}
-        releaseDate={movie.release_date}
-        imageUrl={movie.image_url}
-        externalId={movie.external_id}
-        buttonName="Select"
-        deselectMovieCallback={this.deselectMovie}
-      />) : null;
-  
     const movies = this.state.movieList.map((movie, i) => {
       return <Movie
         key={i}
-        id={movie.id}
         title={movie.title}
         overview={movie.overview}
         releaseDate={movie.release_date}
@@ -77,20 +103,27 @@ class MovieLibrary extends Component {
         externalId={movie.external_id}
         buttonName="Select"
         selectMovieCallback={this.selectMovie}
-        showDetailCallback={this.showDetail}
       />
     })
 
     return (
       <div>
         <h3>{this.state.error}</h3>
-        <section>{currentMovie}</section>
         <section className="movie-list">
           {movies}
+        </section>
+        <section className='movie-page'>
+          <button className="btn btn-outline-info movie-page-button" onClick={this.goPreviousPage} disabled={!this.state.previousPageBtn}>Back</button>
+          <span>{this.state.currentPage}</span>
+          <button className="btn btn-outline-info movie-page-button" onClick={this.goNextPage} disabled={!this.state.nextPageBtn}>Next</button>
         </section>
       </div>
     );
   }
+}
+
+MovieLibrary.propTypes = {
+  selectMovieCallback: PropTypes.func
 }
 
 export default MovieLibrary;

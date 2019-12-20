@@ -47,6 +47,7 @@ class MovieSearch extends Component {
       .then((response) => {
         this.setState({
           error: '',
+          success: 'Success: Movie is added to library!'
         });
       })
       .catch((error) => {
@@ -77,11 +78,21 @@ class MovieSearch extends Component {
       />
     });
 
+    let message = null;
+    if(this.state.error) {
+      message = <h3 className="error"> Error: This movie is already in rental library </h3>;
+    } else if(this.state.success) {
+      message = <h3 className="success"> {this.state.success} </h3>;
+    }
+
     return (
-      <section>
+      <section className='search'>
         <div>
           <label htmlFor="MovieSearch">Search</label>
         </div>
+
+          {message}
+
         <form onSubmit={this.searchMovie}>
           <input
             onChange={(event) => { this.setState({ searchTerm: event.target.value }) }}

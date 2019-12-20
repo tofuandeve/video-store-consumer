@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  padding: 0
 }
 
 .App-logo {
@@ -9,7 +10,6 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
   padding: 20px;
   color: white;
 }
@@ -27,6 +27,27 @@
   to { transform: rotate(360deg); }
 }
 
+nav {
+  background-color: rgb(97, 131, 131);
+}
+
+nav a, nav li .btn {
+  color: white
+}
+
+nav li .btn {
+  padding: 0
+}
+
+nav a:hover, nav li .btn:hover {
+  color: rgb(194, 211, 214);
+  text-decoration-line: underline;
+}
+
+#rental .btn {
+  padding: 5px
+}
+
 nav ul {
   padding-left: 0;
 }
@@ -34,5 +55,21 @@ nav ul {
 nav li {
   list-style: none;
   display: inline-block;
-  margin: 20px
+  margin: 20px 50px
+}
+
+.homepage {
+  padding: 30px 30px 50px 30px
+}
+
+.homepage-img {
+  width: 52%;
+  border-radius: 5%;
+  opacity: 0.9;
+}
+
+.footer {
+  color: white;
+  padding: 15px;
+  background-color: rgb(97, 131, 131);
 }

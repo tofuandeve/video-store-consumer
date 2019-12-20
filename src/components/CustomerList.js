@@ -38,7 +38,7 @@ class CustomerList extends React.Component {
   
   selectCustomer = (customerId) => {
     const customer = this.findCustomer(customerId)
-    this.props.selectCustomerCallBack(customer);
+    this.props.selectCustomerCallback(customer);
   }
 
   render() {
@@ -47,7 +47,7 @@ class CustomerList extends React.Component {
         <Customer
           key={i}
           customerInfo={customer}
-          selectCustomerCallBack={this.selectCustomer}
+          selectCustomerCallback={this.selectCustomer}
         />
       );
     })
@@ -63,7 +63,7 @@ class CustomerList extends React.Component {
 }
 
 CustomerList.propTypes = {
-  selectCustomerCallBack: PropTypes.func
+  selectCustomerCallback: PropTypes.func
 }
 
 export default CustomerList;

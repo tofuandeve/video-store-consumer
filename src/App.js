@@ -90,7 +90,7 @@ class App extends Component {
             <Switch>
               <Route path="/customers">
                 <CustomerList
-                  selectCustomerCallBack={this.selectCustomer}
+                  selectCustomerCallback={this.selectCustomer}
                 />
               </Route>
               <Route path="/movies">

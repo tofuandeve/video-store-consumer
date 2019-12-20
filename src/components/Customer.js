@@ -6,7 +6,7 @@ import CustomerDetail from './CustomerDetail';
 
 class Customer extends React.Component {
   selectCustomer = () => {
-    this.props.selectCustomerCallBack(this.props.customerInfo.id);
+    this.props.selectCustomerCallback(this.props.customerInfo.id);
   }
 
   render() {

@@ -100,7 +100,7 @@ class App extends Component {
                 <h5>Current Rental</h5>
                 <div className='card-body'>
                   
-                <h3 className="success"> {this.state.message} </h3>
+                <h3 className="message"> {this.state.message} </h3>
                   
                   <p>Movie: {movie}</p>
                   <p>Customer: {customer}</p>

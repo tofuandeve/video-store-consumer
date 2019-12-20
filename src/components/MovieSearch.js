@@ -10,6 +10,7 @@ class MovieSearch extends Component {
     this.state = {
       movies: [],
       searchTerm: '',
+      message: '',
     }
   }
 
@@ -25,6 +26,7 @@ class MovieSearch extends Component {
           movies: moviesData,
           searchTerm: '',
           error: '',
+          message: '',
         });
       })
       .catch((error) => {
@@ -47,12 +49,13 @@ class MovieSearch extends Component {
       .then((response) => {
         this.setState({
           error: '',
-          success: 'Success: Movie is added to library!'
+          message: 'Success: Movie is added to library!'
         });
       })
       .catch((error) => {
         this.setState({
           error: error.message,
+          message: 'Error: This movie is already in rental library',
         });
       });
   }
@@ -78,20 +81,13 @@ class MovieSearch extends Component {
       />
     });
 
-    let message = null;
-    if(this.state.error) {
-      message = <h3 className="error"> Error: This movie is already in rental library </h3>;
-    } else if(this.state.success) {
-      message = <h3 className="success"> {this.state.success} </h3>;
-    }
-
     return (
       <section className='search'>
         <div>
           <label htmlFor="MovieSearch">Search</label>
         </div>
 
-          {message}
+        <h3 className="message"> {this.state.message} </h3>
 
         <form onSubmit={this.searchMovie}>
           <input

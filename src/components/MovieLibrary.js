@@ -10,12 +10,20 @@ class MovieLibrary extends Component {
     super(props);
 
     this.state = {
-      movieList: []
+      movieList: [],
+      page: 1,
+      currentPage: 1,
+      nextPageBtn: true,
+      previousPageBtn: true
     };
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/movies').then((response) => {
+    const params = {
+      p: this.state.page,
+      n: 8
+    }
+    axios.get(`http://localhost:3000/movies?p=${params['p']}&n=${params['n']}`).then((response) => {
       this.setState({
         movieList: response.data,
         error: ''
@@ -25,6 +33,26 @@ class MovieLibrary extends Component {
         error: error.message
       })
     })
+  }
+
+  componentDidUpdate() {
+    if(this.state.currentPage !== this.state.page){
+      const params = {
+        p: this.state.page,
+        n: 8
+      }
+      axios.get(`http://localhost:3000/movies?p=${params['p']}&n=${params['n']}`).then((response) => {
+        this.setState({
+          movieList: response.data,
+          error: '',
+          currentPage: this.state.page
+        })
+      }).catch((error) => {
+        this.setState({
+          error: error.message
+        })
+      })
+    }
   }
 
   findMovieByExternalId = (externalId) => {
@@ -38,6 +66,30 @@ class MovieLibrary extends Component {
     const selectedMovie = this.findMovieByExternalId(externalId);
     console.log(selectedMovie);
     this.props.selectMovieCallback(selectedMovie);
+  }
+
+  goPreviousPage = () => {
+    if(this.state.page > 0){
+      this.setState({
+        page: this.state.page - 1
+      })
+    } else {
+      this.setState({
+        previousPageBtn: false
+      })
+    }
+  }
+
+  goNextPage = () => {
+    if(this.state.movieList.length === 8){
+      this.setState({
+        page: this.state.page + 1
+      })
+    } else {
+      this.setState({
+        nextPageBtn: false
+      })
+    }
   }
 
   render() {
@@ -59,6 +111,11 @@ class MovieLibrary extends Component {
         <h3>{this.state.error}</h3>
         <section className="movie-list">
           {movies}
+        </section>
+        <section className='movie-page'>
+          <button className="btn btn-outline-info movie-page-button" onClick={this.goPreviousPage} disabled={!this.state.previousPageBtn}>Back</button>
+          <span>{this.state.currentPage}</span>
+          <button className="btn btn-outline-info movie-page-button" onClick={this.goNextPage} disabled={!this.state.nextPageBtn}>Next</button>
         </section>
       </div>
     );

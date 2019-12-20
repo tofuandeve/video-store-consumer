@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Movie from './Movie';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './MovieLibrary.css';
 
@@ -62,6 +63,10 @@ class MovieLibrary extends Component {
       </div>
     );
   }
+}
+
+MovieLibrary.propTypes = {
+  selectMovieCallback: PropTypes.func
 }
 
 export default MovieLibrary;

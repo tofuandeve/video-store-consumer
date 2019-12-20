@@ -18,7 +18,7 @@ const Movie = (props) => {
         </section>
 
         <button
-            className="btn btn-primary movie-select-button"
+            className="btn btn-outline-info movie-select-button"
             onClick={() => { selectMovieCallback(externalId) }}
           >
           {buttonName}

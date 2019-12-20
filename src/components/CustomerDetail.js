@@ -90,7 +90,7 @@ class CustomerDetail extends React.Component {
 
         return (
             <>
-                <Button variant="primary" onClick={this.handleShow}>
+                <Button variant="outline-info" onClick={this.handleShow}>
                     Details
                 </Button>
             

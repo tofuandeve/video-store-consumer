@@ -13,13 +13,19 @@ class Customer extends React.Component {
     const { name, registered_at, phone, address, city, state, postal_code, movies_checked_out_count, account_credit} = this.props.customerInfo;
     
     return (
-      <section className='card customer-card'>
-        <h4 className='card-title'>{name}</h4>
-        <p>Member since: {(new Date(registered_at)).toLocaleDateString()}</p>
-        <p>Movies checked out: {movies_checked_out_count}</p>
-        <p>Available credit: ${account_credit}</p>
-        <button className="btn btn-primary customer-select-button" onClick={this.selectCustomer}>Select</button>
-        <CustomerDetail customerInfo={this.props.customerInfo} />
+      <section className='card customer-card bg-light mb-3' >
+        <h5 className='card-header'>{name}</h5>
+
+        <div className="card-body">
+          <p className="card-text">Member since: {(new Date(registered_at)).toLocaleDateString()}</p>
+          <p className="card-text">Movies checked out: {movies_checked_out_count}</p>
+          <p className="card-text">Available credit: ${account_credit}</p>
+        </div>
+
+        <div className="buttons">
+          <button className="btn btn-outline-info customer-select-button" onClick={this.selectCustomer}>Select</button>
+          <CustomerDetail customerInfo={this.props.customerInfo} />
+        </div>
       </section>
     );
   }

@@ -7,3 +7,13 @@
     flex-flow: row wrap;
     justify-content: center;
   }
+
+.error {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: maroon;
+}
+
+.success {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: teal;
+}

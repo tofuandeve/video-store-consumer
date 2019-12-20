@@ -1,15 +1,14 @@
 import React from 'react';
 import Customer from './Customer.js';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CustomerDetail from './CustomerDetail';
 
 class CustomerList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      customers: [],
-      currentCustomer: undefined,
+      customers: []
     }
   }
 
@@ -42,40 +41,29 @@ class CustomerList extends React.Component {
     this.props.selectCustomerCallBack(customer);
   }
 
-  showDetail = (customerId) => {
-    const currentCustomer = this.findCustomer(customerId)
-    this.setState({ currentCustomer })
-  }
-
   render() {
-    const customer = this.state.currentCustomer;
-    console.log(customer)
-    const currentCustomer = (customer !== undefined) ? 
-      <CustomerDetail
-        customerInfo={customer}
-        selectCustomerCallBack={this.selectCustomer} // enable selecting a customer in CustomerDetail component
-      /> : null;
-    
     const customers = this.state.customers.map((customer, i) => {
       return (
         <Customer
           key={i}
           customerInfo={customer}
           selectCustomerCallBack={this.selectCustomer}
-          showDetailCallback={this.showDetail}
-        ></Customer>
+        />
       );
     })
     
     return (
       <section>
         <h3>{this.state.error}</h3>
-        <section>{currentCustomer}</section>
         <section>
           {customers}
         </section>
       </section>);
   }
+}
+
+CustomerList.propTypes = {
+  selectCustomerCallBack: PropTypes.func
 }
 
 export default CustomerList;

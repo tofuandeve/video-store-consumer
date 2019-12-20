@@ -14,16 +14,11 @@ class Customer extends React.Component {
     
     return (
       <section className='card customer-card'>
-        <h4>{name}</h4>
+        <h4 className='card-title'>{name}</h4>
         <p>Member since: {(new Date(registered_at)).toLocaleDateString()}</p>
-        <p>Phone number: {phone}</p>
-        <section>
-          <p>Address: {address}</p>
-          <p>{city}, {state} {postal_code}</p>
-        </section>
         <p>Movies checked out: {movies_checked_out_count}</p>
-        <p>Available credit: {account_credit}</p>
-        <button onClick={this.selectCustomer}>Select customer</button>
+        <p>Available credit: ${account_credit}</p>
+        <button className="btn btn-primary customer-select-button" onClick={this.selectCustomer}>Select</button>
         <CustomerDetail customerInfo={this.props.customerInfo} />
       </section>
     );

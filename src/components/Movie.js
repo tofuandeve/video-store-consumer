@@ -14,17 +14,15 @@ const Movie = (props) => {
       
       <section className="card-body">
         <section className='movie-title'>
-          <h6>{title}</h6>
+          <h5>{title}</h5>
         </section>
 
-        <section className='movie-select-button'>
-          <button
-            className="btn btn-primary"
+        <button
+            className="btn btn-primary movie-select-button"
             onClick={() => { selectMovieCallback(externalId) }}
           >
-            {buttonName}
-          </button>
-        </section>
+          {buttonName}
+        </button>
 
         <MovieDetail
           title={title}

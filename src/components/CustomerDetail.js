@@ -70,8 +70,6 @@ class CustomerDetail extends React.Component {
     // }
 
     render() {
-        
-
         const { name, registered_at, phone, address, city, state, postal_code, account_credit } = this.props.customerInfo;
 
         const movies = this.state.checkedOutMovies.map((movie, i) => {
@@ -101,11 +99,11 @@ class CustomerDetail extends React.Component {
                         <Modal.Title>{name}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <p>Registered At: {registered_at}</p>
+                        <p>Member since: {(new Date(registered_at)).toLocaleDateString()}</p>
                         <p>Address: {address}</p>
                         <p>{city}, {state} {postal_code}</p>
                         <p>Phone: {phone}</p>
-                        <p>Account Credit: {account_credit}</p>
+                        <p>Available Credit: {account_credit}</p>
                         {movies}
                     </Modal.Body>
                     <Modal.Footer>

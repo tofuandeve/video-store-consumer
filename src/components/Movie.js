@@ -6,9 +6,10 @@ import MovieDetail from './MovieDetail';
 
 const Movie = (props) => {
   const {title, overview, releaseDate, imageUrl, externalId, selectMovieCallback, buttonName } = props;
-
+  const styling = (props.isHighlighted) ? "card movie-card overdue" : "card movie-card";
+  
   return (
-    <div className="card movie-card" >
+    <div className={styling} >
 
       <img src={imageUrl} alt={title} className="card-img-top"></img>
       

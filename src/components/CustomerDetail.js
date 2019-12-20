@@ -11,9 +11,9 @@ class CustomerDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            checkedOutMovies: [],
-            overdueList: [],
+            rentals: [],
             customerId: undefined,
+            totalRental: undefined,
             show: false
         }
     }
@@ -31,11 +31,12 @@ class CustomerDetail extends React.Component {
     }
     
     getCustomerDetailFromApi = () => {
-        const url = `http://localhost:3000/customers/${this.props.customerInfo.id}`;
-        axios.get(url).then((response) => {
+        const rentalsUrl = `http://localhost:3000/customers/${this.props.customerInfo.id}`;
+        axios.get(rentalsUrl).then((response) => {
             this.setState({
                 customerId: this.props.customerInfo.id,
-                checkedOutMovies: response.data,
+                totalRental: this.props.customerInfo.movies_checked_out_count,
+                rentals: response.data,
             })
         }).catch((error) => {
             this.setState({
@@ -47,43 +48,47 @@ class CustomerDetail extends React.Component {
     componentDidMount() {}
 
     componentDidUpdate() {
-        if (this.props.customerInfo.id !== this.state.customerId) {
+        if (this.state.rentals.length !== this.state.totalRental || this.props.customerInfo.id !== this.state.customerId) {
             this.getCustomerDetailFromApi()
         }
     }
 
-    // checkin = (externalMovieId) => {
-    //     const movie = this.state.checkedOutMovies.find((movie) => {
-    //         return movie.external_id === externalMovieId;
-    //     })
+    checkin = (externalMovieId) => {
+        const rental = this.state.rentals.find((rental) => {
+            return rental.movie.external_id === externalMovieId;
+        })
+        console.log(rental)
 
-    //     const url = `http://localhost:3000/rentals/${movie.title}/return`
-    //     axios.post(url).then((reponse) => {
-    //         this.setState({
-    //             error: '',
-    //         });
-    //     }).catch((error) => {
-    //         this.setState({
-    //             error: error.message,
-    //         });
-    //     });
-    // }
+        const url = `http://localhost:3000/rentals/${rental.movie.title}/return`
+        const params = {customer_id: this.props.customerInfo.id}
+        axios.post(url, params).then((reponse) => {
+            this.setState({
+                error: '',
+                totalRental: this.state.totalRental - 1,
+            });
+        }).catch((error) => {
+            this.setState({
+                error: error.message,
+            });
+        });
+    }
 
     render() {
         const { name, registered_at, phone, address, city, state, postal_code, account_credit } = this.props.customerInfo;
 
-        const movies = this.state.checkedOutMovies.map((movie, i) => {
+        const movies = this.state.rentals.map((rental, i) => {
+            const isHighlighted = new Date(rental.due_date) < new Date
             return (
                 <Movie
                     key={i}
-                    title={movie.title}
-                    overview={movie.overview}
-                    releaseDate={movie.release_date}
-                    imageUrl={movie.image_url}
-                    externalId={movie.external_id}
+                    title={rental.movie.title}
+                    overview={rental.movie.overview}
+                    releaseDate={rental.movie.release_date}
+                    imageUrl={rental.movie.image_url}
+                    externalId={rental.movie.external_id}
                     buttonName="Checkin"
-                    // selectMovieCallback={this.checkin}
-                    // showDetailCallback={() => { }} // we need this emty function so that browser won't crash when user click on the checked out movie list on customer detail page
+                    isHighlighted={isHighlighted}
+                    selectMovieCallback={this.checkin}
                 />
             )
         })

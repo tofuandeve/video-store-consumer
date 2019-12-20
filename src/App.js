@@ -11,6 +11,7 @@ import CustomerList from './components/CustomerList';
 import MovieLibrary from './components/MovieLibrary';
 import MovieSearch from './components/MovieSearch';
 import axios from 'axios';
+import { Collapse } from 'react-bootstrap';
 
 class App extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class App extends Component {
     this.state = {
       selectedCustomer: undefined,
       selectedMovie: undefined,
+      open: false
     }
   }
 
@@ -59,8 +61,8 @@ class App extends Component {
 
   render() {
     const { selectedMovie, selectedCustomer } = this.state;
-    const movie = (selectedMovie !== undefined) ? (<div>Selected Movie: {selectedMovie.title}</div>) : null;
-    const customer = (selectedCustomer !== undefined) ? (<div>Selected Customer: {selectedCustomer.name}</div>) : null;
+    const movie = (selectedMovie !== undefined) ? selectedMovie.title : 'N/A';
+    const customer = (selectedCustomer !== undefined) ? selectedCustomer.name : 'N/A';
 
     return (
       <div className="App">
@@ -72,12 +74,28 @@ class App extends Component {
                 <li><Link to="/customers">Customer List</Link></li>
                 <li><Link to="/movies">Rental Library</Link></li>
                 <li><Link to="/search">Search Movie</Link></li>
-                {(selectedCustomer !== undefined && selectedMovie !== undefined) ? <li><button onClick={this.checkout}>Checkout</button></li> : null}
+                <li>
+                  <button
+                    className='btn'
+                    onClick={() => { this.setState({ open: !this.state.open }) }} aria-controls="rental"
+                    aria-expanded={this.state.open}
+                  >
+                    Check Rental
+                  </button>
+                </li>
               </ul>
             </nav>
 
-            {movie}
-            {customer}
+            <Collapse in={this.state.open}>
+              <div id="rental">
+                <h5>Current Rental</h5>
+                <div className='card-body'>
+                  <p>Movie: {movie}</p>
+                  <p>Customer: {customer}</p>
+                </div>
+                {(selectedCustomer !== undefined && selectedMovie !== undefined) ? <button className='btn btn-info' onClick={this.checkout}>Checkout</button> : null}
+              </div>
+            </Collapse>
 
             <Switch>
               <Route path="/customers">

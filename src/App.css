@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: rgb(223, 232, 235);
+  padding: 0
 }
 
 .App-logo {
@@ -31,12 +31,21 @@ nav {
   background-color: rgb(97, 131, 131);
 }
 
-nav a {
+nav a, nav li .btn {
   color: white
 }
 
-nav a:hover {
-  color: rgb(194, 211, 214)
+nav li .btn {
+  padding: 0
+}
+
+nav a:hover, nav li .btn:hover {
+  color: rgb(194, 211, 214);
+  text-decoration-line: underline;
+}
+
+#rental .btn {
+  padding: 5px
 }
 
 nav ul {

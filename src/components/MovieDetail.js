@@ -25,7 +25,7 @@ const MovieDetail = (props) => {
         </Modal.Header>
         <Modal.Body>
           <p>Release Date: {releaseDate}</p>
-          <img src={imageUrl} alt={title} className="img-rounded"></img>
+          <img src={imageUrl} alt={title} className="movie-detail-img"></img>
           <p>{overview}</p>
           <p>External ID: {externalId}</p>
         </Modal.Body>

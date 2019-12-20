@@ -35,3 +35,7 @@
 .overdue {
   background-color: rgb(182, 201, 208);
 }
+
+.movie-detail-img {
+  margin-bottom: 15px
+}

@@ -44,6 +44,10 @@ nav a:hover, nav li .btn:hover {
   text-decoration-line: underline;
 }
 
+#rental h5{
+  color: rgb(27, 85, 80)
+}
+
 #rental .btn {
   padding: 5px
 }

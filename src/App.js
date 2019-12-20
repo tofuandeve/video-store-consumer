@@ -19,16 +19,23 @@ class App extends Component {
     this.state = {
       selectedCustomer: undefined,
       selectedMovie: undefined,
-      open: false
+      open: false,
+      message: '',
     }
   }
 
   selectCustomer = (selectedCustomer) => {
-    this.setState({ selectedCustomer });
+    this.setState({ 
+      selectedCustomer: selectedCustomer,
+      message: '',
+     });
   }
 
   selectMovie = (selectedMovie) => {
-    this.setState({ selectedMovie })
+    this.setState({ 
+      selectedMovie: selectedMovie,
+      message: '',
+     })
   }
 
   componentDidMount() { }
@@ -46,10 +53,12 @@ class App extends Component {
 
     axios.post(url, params)
       .then((response) => {
+        const message = `Checkout successfully: ${this.state.selectedCustomer.name} : ${this.state.selectedMovie.title}`;
         this.setState({
           selectedCustomer: undefined,
           selectedMovie: undefined,
           error: '',
+          message: message,
         });
       })
       .catch((error) => {
@@ -90,6 +99,9 @@ class App extends Component {
               <div id="rental">
                 <h5>Current Rental</h5>
                 <div className='card-body'>
+                  
+                <h3 className="success"> {this.state.message} </h3>
+                  
                   <p>Movie: {movie}</p>
                   <p>Customer: {customer}</p>
                 </div>
